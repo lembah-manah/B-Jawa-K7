@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="jv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bahasa Jawa Kelas 7 · MTs Lembah Manah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rasa:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --kertas:#F3E7D0;
+    --kertas-deep:#EADFC4;
+    --sogan:#6B3F23;
+    --sogan-dark:#4A2A17;
+    --wedel:#25415A;
+    --prada:#B8862B;
+    --manggis:#7B2E2A;
+    --ink:#2A1D12;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--kertas);
+    color:var(--ink);
+    font-family:'Karla',sans-serif;
+    line-height:1.6;
+    background-image:
+      repeating-linear-gradient(135deg, rgba(107,63,35,0.045) 0px, rgba(107,63,35,0.045) 2px, transparent 2px, transparent 26px),
+      repeating-linear-gradient(45deg, rgba(37,65,90,0.035) 0px, rgba(37,65,90,0.035) 2px, transparent 2px, transparent 26px);
+  }
+
+  h1,h2,h3,.jawa-num{font-family:'Rasa',serif;}
+
+  a{text-decoration:none;color:inherit;}
+
+  /* ===== HEADER ===== */
+  header{
+    position:relative;
+    background:linear-gradient(160deg, var(--sogan-dark) 0%, var(--sogan) 55%, var(--wedel) 130%);
+    color:var(--kertas);
+    padding:64px 24px 56px;
+    text-align:center;
+    overflow:hidden;
+    border-bottom:6px solid var(--prada);
+  }
+
+  header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image: repeating-linear-gradient(45deg, rgba(243,231,208,0.06) 0, rgba(243,231,208,0.06) 1.5px, transparent 1.5px, transparent 22px);
+    pointer-events:none;
+  }
+
+  .eyebrow{
+    position:relative;
+    font-size:0.72rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--prada);
+    font-weight:600;
+    margin-bottom:18px;
+  }
+
+  header h1{
+    position:relative;
+    font-size:clamp(1.6rem, 4.4vw, 2.5rem);
+    font-weight:700;
+    letter-spacing:0.01em;
+    text-shadow:0 2px 10px rgba(0,0,0,0.25);
+  }
+
+  header h2{
+    position:relative;
+    font-size:clamp(1.05rem, 2.6vw, 1.35rem);
+    font-weight:500;
+    font-style:italic;
+    margin-top:10px;
+    color:#EAD9B8;
+  }
+
+  .subject-tag{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    margin-top:28px;
+    padding:12px 28px;
+    background:rgba(243,231,208,0.1);
+    border:1px solid rgba(184,134,43,0.55);
+    border-radius:999px;
+    font-family:'Rasa',serif;
+    font-size:clamp(1.1rem, 3vw, 1.5rem);
+    font-weight:600;
+    letter-spacing:0.01em;
+  }
+
+  .subject-tag .aksara{
+    font-size:1.3em;
+    color:var(--prada);
+  }
+
+  /* ===== INTRO STRIP ===== */
+  .intro{
+    max-width:760px;
+    margin:0 auto;
+    padding:40px 24px 8px;
+    text-align:center;
+  }
+  .intro p{
+    color:#4a3520;
+    font-size:1rem;
+  }
+  .intro .divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin:22px 0 30px;
+    color:var(--prada);
+  }
+  .intro .divider .line{
+    height:1px;
+    width:60px;
+    background:linear-gradient(90deg, transparent, var(--prada));
+  }
+  .intro .divider .line.rev{
+    background:linear-gradient(90deg, var(--prada), transparent);
+  }
+  .intro .divider span{
+    font-family:'Rasa',serif;
+    font-size:1.4rem;
+  }
+
+  /* ===== WULANGAN GRID ===== */
+  main{
+    max-width:1000px;
+    margin:0 auto;
+    padding:0 24px 80px;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:26px;
+    margin-top:10px;
+  }
+
+  .card{
+    position:relative;
+    display:block;
+    background:#FBF4E3;
+    border:1px solid rgba(107,63,35,0.18);
+    border-radius:4px;
+    padding:30px 26px 26px;
+    transition:transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    box-shadow:0 1px 0 rgba(107,63,35,0.08);
+  }
+
+  .card::after{
+    content:"";
+    position:absolute;
+    left:26px;
+    right:26px;
+    bottom:0;
+    height:3px;
+    background:linear-gradient(90deg, var(--manggis), var(--prada));
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform 0.3s ease;
+  }
+
+  .card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 14px 30px rgba(74,42,23,0.18);
+    border-color:var(--prada);
+  }
+  .card:hover::after{transform:scaleX(1);}
+
+  .card .num-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:14px;
+  }
+
+  .card .jawa-num{
+    font-size:1.9rem;
+    color:var(--prada);
+    line-height:1;
+  }
+
+  .card .wulangan-label{
+    font-size:0.7rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--manggis);
+    font-weight:700;
+  }
+
+  .card h3{
+    font-size:1.35rem;
+    color:var(--sogan-dark);
+    margin-bottom:14px;
+    line-height:1.3;
+  }
+
+  .card ul{
+    list-style:none;
+    margin-bottom:20px;
+  }
+
+  .card ul li{
+    font-size:0.88rem;
+    color:#5a4632;
+    padding:5px 0 5px 20px;
+    position:relative;
+  }
+
+  .card ul li::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:13px;
+    width:6px;
+    height:6px;
+    background:var(--wedel);
+    transform:rotate(45deg);
+  }
+
+  .card .go{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-weight:700;
+    font-size:0.85rem;
+    color:var(--wedel);
+    letter-spacing:0.02em;
+  }
+
+  .card .go svg{
+    width:16px;height:16px;
+    transition:transform 0.25s ease;
+  }
+
+  .card:hover .go svg{transform:translateX(4px);}
+
+  /* ===== EVAL STRIP ===== */
+  .eval-strip{
+    margin-top:56px;
+    background:linear-gradient(120deg, var(--wedel), #1c3245);
+    border-radius:6px;
+    padding:32px 30px;
+    color:var(--kertas);
+    display:flex;
+    flex-wrap:wrap;
+    gap:22px;
+    align-items:center;
+    justify-content:space-between;
+  }
+
+  .eval-strip h4{
+    font-family:'Rasa',serif;
+    font-size:1.15rem;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .eval-strip p{
+    font-size:0.85rem;
+    color:#c9d6e0;
+    max-width:480px;
+  }
+  .eval-tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .eval-tags span{
+    border:1px solid rgba(184,134,43,0.6);
+    color:var(--prada);
+    font-size:0.75rem;
+    padding:6px 14px;
+    border-radius:999px;
+    font-weight:600;
+    letter-spacing:0.02em;
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    text-align:center;
+    padding:36px 24px 50px;
+    color:#6a5540;
+    font-size:0.82rem;
+    border-top:1px solid rgba(107,63,35,0.18);
+  }
+  footer .aksara-line{
+    font-family:'Rasa',serif;
+    color:var(--prada);
+    font-size:1.1rem;
+    margin-bottom:8px;
+    letter-spacing:0.05em;
+  }
+
+  @media (max-width:600px){
+    header{padding:48px 18px 42px;}
+    .eval-strip{flex-direction:column;align-items:flex-start;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Yayasan Lembah Manah Langon Jepara</div>
+  <h1>Yayasan Lembah Manah Langon Jepara</h1>
+  <h2>Rintisan MTs Lembah Manah</h2>
+  <div class="subject-tag"><span class="aksara">ꦧ</span> Mata Pelajaran Bahasa Jawa Kelas 7</div>
+</header>
+
+<div class="intro">
+  <p>Materi lan ulangan Basa Jawa kanggo siswa Kelas 7 (VII), disusun manut Kurikulum Merdeka. Pilih Wulangan ing ngisor iki kanggo miwiti sinau.</p>
+  <div class="divider"><span class="line"></span><span>ꦲ</span><span class="line rev"></span></div>
+</div>
+
+<main>
+  <div class="grid">
+
+    <a class="card" href="Bab-1/index.html">
+      <div class="num-row">
+        <span class="jawa-num">꧑</span>
+        <span class="wulangan-label">Wulangan 1</span>
+      </div>
+      <h3>Wacan Narasi</h3>
+      <ul>
+        <li>Teks Narasi</li>
+        <li>Maca Teks Naratif</li>
+        <li>Ngerteni Isine Teks Narasi</li>
+        <li>Nulis Teks Narasi</li>
+        <li>Paramasastra</li>
+      </ul>
+      <span class="go">Bukak Wulangan
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="Bab-2/index.html">
+      <div class="num-row">
+        <span class="jawa-num">꧒</span>
+        <span class="wulangan-label">Wulangan 2</span>
+      </div>
+      <h3>Tembang Macapat</h3>
+      <ul>
+        <li>Tembang Gambuh Serat Wulangreh</li>
+        <li>Mangerteni Isine Pupuh Gambuh</li>
+        <li>Piwulang Luhur Tembang Gambuh</li>
+        <li>Nanggepi Isine Pupuh Gambuh</li>
+      </ul>
+      <span class="go">Bukak Wulangan
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="Bab-3/index.html">
+      <div class="num-row">
+        <span class="jawa-num">꧓</span>
+        <span class="wulangan-label">Wulangan 3</span>
+      </div>
+      <h3>Crita Rakyat</h3>
+      <ul>
+        <li>Pangertene Crita Rakyat</li>
+        <li>Mangerteni Isi Crita Rakyat</li>
+        <li>Nyritakake Crita Kanthi Lesan</li>
+        <li>Nemtokake Piwulang Luhur</li>
+      </ul>
+      <span class="go">Bukak Wulangan
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="Bab-4/index.html">
+      <div class="num-row">
+        <span class="jawa-num">꧔</span>
+        <span class="wulangan-label">Wulangan 4</span>
+      </div>
+      <h3>Crita Pengalaman</h3>
+      <ul>
+        <li>Crita Pengalaman Pribadi</li>
+        <li>Maca lan Nyritakake Pengalaman</li>
+        <li>Mangerteni Isine Teks Crita Pengalaman</li>
+        <li>Nulis Crita Pengalaman</li>
+        <li>Aksara Jawa: Sandangan lan Pasangan</li>
+      </ul>
+      <span class="go">Bukak Wulangan
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
+
+  </div>
+
+  <div class="eval-strip">
+    <div>
+      <h4>Ulangan Padinan &amp; Semesteran</h4>
+      <p>Saben Wulangan dilengkapi Ulangan Padinan. Ana uga Ulangan Tengah Semester sawise Wulangan 2, lan Ulangan Akhir Semester sawise Wulangan 4.</p>
+    </div>
+    <div class="eval-tags">
+      <span>Ulangan Padinan</span>
+      <span>UTS</span>
+      <span>UAS</span>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="aksara-line">✦ ✦ ✦</div>
+  <div>Yayasan Lembah Manah Langon Jepara &middot; Rintisan MTs Lembah Manah</div>
+  <div>Bahan Ajar Basa Jawa &middot; Kelas VII &middot; Kurikulum Merdeka</div>
+</footer>
+
+</body>
+</html>
